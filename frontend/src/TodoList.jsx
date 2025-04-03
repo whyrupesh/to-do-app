@@ -21,7 +21,7 @@ export default function TodoList() {
 
     const fetchAllToDos = async () => {
         try {
-            const res = await fetch("http://localhost:3000/todos");
+            const res = await fetch("https://to-do-app-i8nj.onrender.com/todos");
             const data = await res.json();
             setTotalToDo(data.length);
         } catch (err) {
@@ -31,7 +31,7 @@ export default function TodoList() {
 
     const fetchTodos = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/todos?_start=${page * 5}&_limit=5`);
+            const res = await fetch(`https://to-do-app-i8nj.onrender.com/todos?_start=${page * 5}&_limit=5`);
             const data = await res.json();
             setTodos(data);
             setLoading(false);
@@ -43,7 +43,7 @@ export default function TodoList() {
     const addTodo = async () => {
         if (!newTodo.trim()) return;
         try {
-            await fetch("http://localhost:3000/todos", {
+            await fetch("https://to-do-app-i8nj.onrender.com/todos", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ todo: newTodo, completed: false })
@@ -58,7 +58,7 @@ export default function TodoList() {
 
     const toggleComplete = async (id, completed) => {
         try {
-            await fetch(`http://localhost:3000/todos/${id}`, {
+            await fetch(`https://to-do-app-i8nj.onrender.com/todos/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ completed: !completed })
@@ -71,7 +71,7 @@ export default function TodoList() {
 
     const deleteTodo = async (id) => {
         try {
-            await fetch(`http://localhost:3000/todos/${id}`, { method: "DELETE" });
+            await fetch(`https://to-do-app-i8nj.onrender.com/todos/${id}`, { method: "DELETE" });
             setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
         } catch (err) {
             console.error("Error deleting todo:", err);
@@ -86,7 +86,7 @@ export default function TodoList() {
     const saveEdit = async (id) => {
         if (!editText.trim()) return;
         try {
-            await fetch(`http://localhost:3000/todos/${id}`, {
+            await fetch(`https://to-do-app-i8nj.onrender.com/todos/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ todo: editText })
